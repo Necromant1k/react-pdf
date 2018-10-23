@@ -8,7 +8,7 @@ const isValidFormat = format => {
 };
 
 const isCompatibleBase64 = src =>
-  /data:image\/[a-zA-Z]*;base64,[^"]*/g.test(src);
+  /data:image\/[a-zA-Z+]*;base64,[^"]*/g.test(src);
 
 function getImage(body, extension) {
   switch (extension.toLowerCase()) {
@@ -23,7 +23,7 @@ function getImage(body, extension) {
 }
 
 const resolveBase64Image = src => {
-  const match = /data:image\/([a-zA-Z]*);base64,([^"]*)/g.exec(src);
+  const match = /data:image\/([a-zA-Z+]*);base64,([^"]*)/g.exec(src);
   const format = match[1];
   const data = match[2];
 
